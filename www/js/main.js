@@ -1,7 +1,3 @@
-
-
-
-
 var app = {
 
 showAlert: function (message, title) {
@@ -14,33 +10,11 @@ showAlert: function (message, title) {
 
 initialize: function() {
     var self = this;
-    this.store = new WebSqlStore(function() {
-        self.showAlert('Store Initialized', 'Info');
+    this.store = new MemoryStore(function() {
+        $('body').html(new HomeView(self.store).render().el);
     });
-    $('.search-key').on('keyup', $.proxy(this.findByName, this));
-},
-
-
-    findByName: function() {
-        console.log('findByName');
-        this.store.findByName($('.search-key').val(), function(employees) {
-            var l = employees.length;
-            var e;
-            $('.employee-list').empty();
-            for (var i=0; i<l; i++) {
-                e = employees[i];
-                $('.employee-list').append('<li><a href="#employees/' + e.id + '">' + e.firstName + ' ' + e.lastName + '</a></li>');
-            }
-        });
-    },
-
-   /* initialize: function() {
-        this.store = new WebSqlStore();
-        $('.search-key').on('keyup', $.proxy(this.findByName, this));
-    } */
+}
 
 };
-
-
 
 app.initialize();
