@@ -34,10 +34,10 @@ initialize: function() {
         });
     },
 
-    initialize: function() {
+   /* initialize: function() {
         this.store = new WebSqlStore();
         $('.search-key').on('keyup', $.proxy(this.findByName, this));
-    }
+    } */
 
 };
 
